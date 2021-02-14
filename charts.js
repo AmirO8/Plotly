@@ -66,9 +66,9 @@ function buildCharts(sample) {
     var firstSample = 
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-    var ids = results.out_ids;
-    var lables = results.out_labels;
-    var sample_values = results.sample_values;
+    var ids = firstSample.out_ids;
+    var lables = firstSample.out_labels;
+    var sample_values = firstSample.sample_values;
 
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
