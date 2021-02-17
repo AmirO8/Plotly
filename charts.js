@@ -57,39 +57,86 @@ function buildMetadata(sample) {
 function buildCharts(sample) {
   // 2. Use d3.json to load and retrieve the samples.json file 
   d3.json("samples.json").then((data) => {
-  
+
     // 3. Create a variable that holds the samples array. 
     var samplesArray = data.samples;
     // 4. Create a variable that filters the samples for the object with the desired sample number.
-    var sampleNumber = samplesArray.filter(i => i.id == sample)
+    var sampleNumber = samplesArray.filter(i => i.id == sample);
     //  5. Create a variable that holds the first sample in the arra;y.
-    var firstSample = 
+    var firstSample = sampleNumber[0];
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-    var ids = firstSample.out_ids;
-    var lables = firstSample.out_labels;
-    var sample_values = firstSample.sample_values;
+    var ids = samplesArray.out_ids;
+    var lables = samplesArray.out_labels;
+    var sampleValues = samplesArray.sample_values;
 
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. 
 
-    var yticks = test1.slice(0, 10).reverse();
-    
-    
+    var yticks = sampleValues.slice(0, 10).reverse();
+    var xticks = ids.slice(0, 10).map(j => "OTU" + String(j)).reverse()
+
+
 
     // 8. Create the trace for the bar chart. 
-    var barData = [
-
-    ];
-    // 9. Create the layout for the bar chart. 
-    var barLayout = {
-      x: text,
+  
+    var trace = {
+      x: xticks,
       y: yticks,
+      text:labels.slice(0, 10).reverse(),
       type: "bar",
       orientation: "h"
     };
+
+    var barData = [trace]
+    // 9. Create the layout for the bar chart. 
+    var barLayout = {
+      title: `"Top 10 Bacteria Cultures Found"`,
+    };
     // 10. Use Plotly to plot the data with the layout. 
-    Plotly.newPlot(barData, barLayout)
+    Plotly.newPlot("bar", barData, barLayout)
   });
-}
+
+  // 1. Create the trace for the bubble chart.
+  // var bubbleData = {
+  //   x: 1,
+  //   y: 1,//sampleValues,
+  //   text: "'A<br>size: 40', 'B<br>size: 60', 'C<br>size: 80', 'D<br>size: 100'",
+  //   mode: 'markers',
+  //   marker: {
+  //     color: 'rgb(93, 164, 214)',
+  //     size: [40, 60, 80, 100]
+  //   }
+
+  // };
+
+  // // 2. Create the layout for the bubble chart.
+  // var bubbleLayout = {
+  //   title: "Bubble Chart",
+  //   showlegend: false,
+  //   height: 600,
+  //   width: 600
+  // };
+
+  // // 3. Use Plotly to plot the data with the layout.
+  // //Plotly.newPlot([bubbleData], bubbleLayout)
+
+
+  // // 4. Create the trace for the gauge chart.
+  // var gaugeData = [
+
+  // ];
+
+  // // 5. Create the layout for the gauge chart.
+  // var gaugeLayout = {
+
+  // };
+
+  // // 6. Use Plotly to plot the gauge data and layout.
+
+  // };
+
+  // //Plotly.newPlot("bar")
+
+};
