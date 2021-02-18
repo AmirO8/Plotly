@@ -92,7 +92,7 @@ function buildCharts(sample) {
     var barData = [traceOne]
     // 9. Create the layout for the bar chart. 
     var barLayout = {
-      title: `<br>Top 10 Bacteria Cultures Found`,
+      title: `"Top 10 Bacteria Cultures Found"`,
       width: 425, height: 425
     };
     // 10. Use Plotly to plot the data with the layout. 
