@@ -66,25 +66,23 @@ function buildCharts(sample) {
     var firstSample = sampleNumber[0];
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-    var ids = samplesArray.out_ids;
-    var lables = samplesArray.out_labels;
-    var sampleValues = samplesArray.sample_values;
+    var oneIds = firstSample.otu_ids;
+    var oneLables = firstSample.otu_labels;
+    var sampleValues = firstSample.sample_values;
 
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. 
 
     var yticks = sampleValues.slice(0, 10).reverse();
-    var xticks = ids.slice(0, 10).map(j => "OTU" + String(j)).reverse()
-
-
+    var xticks = oneIds.slice(0, 10).map(j => "OTU" + String(j)).reverse();
 
     // 8. Create the trace for the bar chart. 
-  
+
     var trace = {
-      x: xticks,
-      y: yticks,
-      text:labels.slice(0, 10).reverse(),
+      x: yticks,
+      y: xticks,
+      //text: oneLabels.slice(0, 10).reverse(),
       type: "bar",
       orientation: "h"
     };
@@ -99,44 +97,44 @@ function buildCharts(sample) {
   });
 
   // 1. Create the trace for the bubble chart.
-  // var bubbleData = {
-  //   x: 1,
-  //   y: 1,//sampleValues,
-  //   text: "'A<br>size: 40', 'B<br>size: 60', 'C<br>size: 80', 'D<br>size: 100'",
-  //   mode: 'markers',
-  //   marker: {
-  //     color: 'rgb(93, 164, 214)',
-  //     size: [40, 60, 80, 100]
-  //   }
+  // var trace = {
+  //     x: oneIds,
+  //     y: sampleValues,//sampleValues,
+  //     text: labels,
+  //     mode: 'markers',
+  //     marker: {
+  //       color: 'rgb(93, 164, 214)',
+  //       size: [40, 60, 80, 100]
+  //     }
+
+  //   };
+
+  //   // // 2. Create the layout for the bubble chart.
+  //   var bubbleLayout = {
+  //     title: "Bubble Chart",
+  //     showlegend: false,
+  //     height: 600,
+  //     width: 600
+  //   };
+
+  //   var bubbleData = [trace]
+
+  //   // // 3. Use Plotly to plot the data with the layout.
+  //   Plotly.newPlot("bubble",[bubbleData], bubbleLayout)
 
   // };
+  //   // // 4. Create the trace for the gauge chart.
+  //   //var gaugeData = [
 
-  // // 2. Create the layout for the bubble chart.
-  // var bubbleLayout = {
-  //   title: "Bubble Chart",
-  //   showlegend: false,
-  //   height: 600,
-  //   width: 600
-  // };
+  //   // ];
 
-  // // 3. Use Plotly to plot the data with the layout.
-  // //Plotly.newPlot([bubbleData], bubbleLayout)
+  //   // // 5. Create the layout for the gauge chart.
+  //   // var gaugeLayout = {
 
+  //   // };
 
-  // // 4. Create the trace for the gauge chart.
-  // var gaugeData = [
+  //   // // 6. Use Plotly to plot the gauge data and layout.
 
-  // ];
-
-  // // 5. Create the layout for the gauge chart.
-  // var gaugeLayout = {
-
-  // };
-
-  // // 6. Use Plotly to plot the gauge data and layout.
-
-  // };
-
-  // //Plotly.newPlot("bar")
-
+  //   // };
 };
+  //   //Plotly.newPlot("gauge", [gaugeData], gaugeLayout)};
